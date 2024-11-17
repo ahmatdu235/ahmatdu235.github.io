@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Chad - Agissons pour notre environnement</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Variables CSS pour la cohérence des couleurs et la maintenance */
+        :root {
+            --primary-green: #2ecc71;
+            --secondary-green: #27ae60;
+            --primary-blue: #3498db;
+            --secondary-blue: #2980b9;
+            --light-grey: #f5f6fa;
+            --dark-grey: #2c3e50;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-grey);
+        }
+
+        /* Header et Navigation */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--dark-grey);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                        url('/api/placeholder/1920/1080') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: bold;
+            animation: fadeInUp 1s ease 0.6s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-green);
+            transform: translateY(-3px);
+        }
+
+        /* Sections générales */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-grey);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Section À propos */
+        .about {
+            background-color: var(--light-grey);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            animation: fadeInLeft 1s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Section Initiatives */
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .initiative-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .initiative-image {
+            height: 200px;
+            background: var(--primary-blue);
+        }
+
+        .initiative-content {
+            padding: 1.5rem;
+        }
+
+        /* Formulaire d'initiative */
+        .initiative-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-green);
+            outline: none;
+        }
+
+        /* Carte interactive */
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 2rem;
+        }
+
+        /* Section Ressources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .resource-image {
+            height: 150px;
+            background: var(--primary-blue);
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-grey);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-leaf"></i>
+                Green Chad
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À propos</a></li>
+                <li><a href="#initiatives" class="nav-link">Initiatives</a></li>
+                <li><a href="#map" class="nav-link">Carte</a></li>
+                <li><a href="#resources" class="nav-link">Ressources</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Agissons aujourd'hui pour protéger demain</h1>
+            <p>Rejoignez notre communauté et participez à la protection de l'environnement au Tchad</p>
+            <a href="#initiatives" class="cta-button">Soumettre une initiative</a>
+        </div>
+    </section>
+
+    <!-- À propos Section -->
+    <section id="about" class="section about">
+        <div class="section-title">
+            <h2>À propos de Green Chad</h2>
+            <p>Notre mission est de sensibiliser et d'engager les jeunes tchadiens dans la lutte contre le changement climatique</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Notre Vision</h3>
+                <p>Nous croyons en un Tchad plus vert et plus durable, où chaque action compte pour préserver notre environnement.</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>1000+</h4>
+                        <p>Arbres plantés</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>500+</h4>
+                        <p>Membres actifs</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>50+</h4>
+                        <p>Projets réalisés</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>20+</h4>
+                        <p>Partenaires</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initiatives Section -->
+    <section id="initiatives" class="section">
+        <div class="section-title">
+            <h2>Nos Initiatives</h2>
+            <p>Découvrez les projets en cours et proposez vos propres initiatives</p>
+        </div>
+        <div class="initiatives-grid">
+            <!-- Initiative Cards -->
+            <div class="initiative-card">
+                <div class="initiative-image"></div>
+                <div class="initiative-content">
+                    <h3>Plantation d'arbres</h3>
+                    <p>Programme de reforestation dans la région du Lac Tchad</p>
+                </div>
+            </div>
+            <!-- More initiative cards... -->
+        </div>
+    </section>
+
+    <!-- Carte Interactive Section -->
+    <section id="map" class="section">
+        <div class="section-title">
+            <h2>Carte des Projets</h2>
+            <p>Explorez les initiatives environnementales à travers le Tchad</p>
+        </div>
+        <div id="map"></div>
+    </section>
+
+    <!-- Ressources Section -->
+    <section id="resources" class="section">
+        <div class="section-title">
+            <h2>Ressources</h2>
+            <p>Informez-vous sur le changement climatique et ses impacts</p>
+        </div>
+        <div class="resources-grid">
+            <!-- Resource Cards -->
+            <div class="resource-card">
+                <div class="resource-image"></div>
+                <div class="resource-content">
+                    <h3>Guide du Recyclage</h3>
+                    <p>Apprenez les bases du recyclage et son importance</p>
+                </div>
+            </div>
+            <!-- More resource cards... -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-title">
+            <h2>Contactez-nous</h2>
+            <p>Vous avez des questions ? N'hésitez pas à nous contacter</p>
+        </div>
+        <form class="initiative-form">
+            <div class="form-group">
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Green Chad</h3>
+                <p>Ensemble pour un Tchad plus vert et durable.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#initiatives">Initiatives</a></li>
+                    <li><a href="#resources">Ressources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Restez informé de nos dernières actualités</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Votre email">
+                    <button type="submit" class="cta-button">S'abonner</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Green Chad. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation des éléments au scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.initiative-card, .resource-card, .stat-card');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    if (elementTop < window.innerHeight && elementBottom > 0) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            // Navigation sticky
+            const header = document.querySelector('.header');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll > lastScroll && currentScroll > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+
+                lastScroll = currentScroll;
+                animateOnScroll();
+            });
+
+            // Menu mobile
+            const menuButton = document.createElement('button');
+            menuButton.classList.add('menu-toggle');
+            menuButton.innerHTML = '<i class="fas fa-bars"></i>';
+            document.querySelector('.nav-container').appendChild(menuButton);
+
+            menuButton.addEventListener('click', () => {
+                const navMenu = document.querySelector('.nav-menu');
+                navMenu.classList.toggle('active');
+            });
+
+            // Formulaire d'initiative
+            const initiativeForm = document.querySelector('.initiative-form');
+            if (initiativeForm) {
+                initiativeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Simulation d'envoi de formulaire
+                    alert('Merci pour votre message ! Nous vous répondrons bientôt.');
+                    this.reset();
+                });
+            }
+
+            // Newsletter
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Merci de votre inscription à notre newsletter !');
+                    this.reset();
+                });
+            }
+
+            // Initialisation de la carte (Google Maps)
+            function initMap() {
+                const map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 12.1348, lng: 15.0557 }, // Coordonnées du Tchad
+                    zoom: 6
+                });
+
+                // Exemple de marqueurs pour les projets
+                const projects = [
+                    {
+                        position: { lat: 12.1348, lng: 15.0557 },
+                        title: "Projet de Reforestation"
+                    },
+                    // Ajoutez d'autres projets ici
+                ];
+
+                projects.forEach(project => {
+                    new google.maps.Marker({
+                        position: project.position,
+                        map: map,
+                        title: project.title
+                    });
+                });
+            }
+
+            // Chargement asynchrone de l'API Google Maps
+            function loadGoogleMaps() {
+                const script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap`;
+                script.async = true;
+                script.defer = true;
+                document.head.appendChild(script);
+            }
+
+            // Notifications Push
+            if ('Notification' in window) {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        // Configuration des notifications
+                    }
+                });
+            }
+        });
+
+        // Système de filtrage pour les initiatives
+        function filterInitiatives(category) {
+            const initiatives = document.querySelectorAll('.initiative-card');
+            initiatives.forEach(initiative => {
+                const initiativeCategory = initiative.dataset.category;
+                if (category === 'all' || initiativeCategory === category) {
+                    initiative.style.display = 'block';
+                } else {
+                    initiative.style.display = 'none';
+                }
+            });
+        }
+
+        // Lazy loading des images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        });
+    </script>
+</body>
+</html>
